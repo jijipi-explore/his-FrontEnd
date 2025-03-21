@@ -1,3 +1,4 @@
+
 <template>
   <div class="site-wrapper"
     :class="{ 'site-sidebar--fold': sidebar.sidebarFold }"
@@ -59,7 +60,7 @@
                     <span slot="title">组织管理</span>
                 </template>
                 <el-menu-item index="MisDept"
-                    
+                    v-if="proxy.isAuth(['ROOT', 'DEPT:SELECT'])"
                     @click="$router.push({ name: 'MisDept' })">
                     <el-icon>
                         <SvgIcon name="company_fill" class="icon-svg" />
@@ -67,7 +68,7 @@
                     <span slot="title">部门管理</span>
                 </el-menu-item>
                 <el-menu-item index="MisRole"
-                    
+                    v-if="proxy.isAuth(['ROOT', 'ROLE:SELECT'])"
                     @click="$router.push({ name: 'MisRole' })">
                     <el-icon>
                         <SvgIcon name="role_fill" class="icon-svg" />
@@ -75,7 +76,7 @@
                     <span slot="title">角色管理</span>
                 </el-menu-item>
                 <el-menu-item index="MisUser"
-                    
+                    v-if="proxy.isAuth(['ROOT', 'USER:SELECT'])"
                     @click="$router.push({ name: 'MisUser' })">
                     <el-icon>
                         <SvgIcon name="user_fill" class="icon-svg" />
@@ -92,7 +93,7 @@
                     <span slot="title">业务管理</span>
                 </template>
                 <el-menu-item index="MisGoods"
-                    
+                    v-if="proxy.isAuth(['ROOT', 'GOODS:SELECT'])"
                     @click="$router.push({ name: 'MisGoods' })">
                     <el-icon>
                         <SvgIcon name="goods_fill" class="icon-svg" />
@@ -100,7 +101,7 @@
                     <span slot="title">体检套餐</span>
                 </el-menu-item>
                 <el-menu-item index="MisRule"
-                    
+                    v-if="proxy.isAuth(['ROOT', 'RULE:SELECT'])"
                     @click="$router.push({ name: 'MisRule' })">
                     <el-icon>
                         <SvgIcon name="rule_fill" class="icon-svg" />
@@ -108,7 +109,7 @@
                     <span slot="title">促销规则</span>
                 </el-menu-item>
                 <el-menu-item index="MisCustomer"
-                    
+                    v-if="proxy.isAuth(['ROOT', 'CUSTOMER:SELECT'])"
                     @click="$router.push({ name: 'MisCustomer' })">
                     <el-icon>
                         <SvgIcon name="customer_fill"
@@ -117,7 +118,7 @@
                     <span slot="title">客户档案</span>
                 </el-menu-item>
                 <el-menu-item index="MisOrder"
-                    
+                    v-if="proxy.isAuth(['ROOT', 'ORDER:SELECT'])"
                     @click="$router.push({ name: 'MisOrder' })">
                     <el-icon>
                         <SvgIcon name="order_fill" class="icon-svg" />
@@ -125,7 +126,7 @@
                     <span slot="title">订单管理</span>
                 </el-menu-item>
                 <el-menu-item index="MisCustomerIm"
-                    
+                    v-if="proxy.isAuth(['ROOT', 'CUSTOMER_IM:SELECT'])"
                     @click="$router.push({ name: 'MisCustomerIm' })">
                     <el-icon>
                         <SvgIcon name="im_fill" class="icon-svg" />
@@ -142,7 +143,7 @@
                     <span slot="title">体检管理</span>
                 </template>
                 <el-menu-item index="MisAppointment"
-                    
+                    v-if="proxy.isAuth(['ROOT', 'APPOINTMENT:SELECT'])"
                     @click="$router.push({ name: 'MisAppointment' })">
                     <el-icon>
                         <SvgIcon name="appointment_fill"
@@ -151,7 +152,7 @@
                     <span slot="title">体检预约</span>
                 </el-menu-item>
                 <el-menu-item index="MisCustomerCheckin"
-                    
+                    v-if="proxy.isAuth(['ROOT', 'CUSTOMER_CHICKIN:SELECT'])"
                     @click="$router.push({ name: 'MisCustomerCheckin' })">
                     <el-icon>
                         <SvgIcon name="checkin_fill" class="icon-svg" />
@@ -159,7 +160,7 @@
                     <span slot="title">体检签到</span>
                 </el-menu-item>
                 <el-menu-item index="MisAppointmentRestriction"
-                    
+                    v-if="proxy.isAuth(['ROOT', 'APPOINTMENT_RESTRICTION:SELECT'])"
                     @click="$router.push({ name: 'MisAppointmentRestriction' })">
                     <el-icon>
                         <SvgIcon name="setting_fill" class="icon-svg" />
@@ -167,7 +168,7 @@
                     <span slot="title">预约设置</span>
                 </el-menu-item>
                 <el-menu-item index="MisCheckup"
-                    
+                    v-if="proxy.isAuth(['ROOT', 'CHECKUP:SELECT'])"
                     @click="$router.push({ name: 'MisCheckup' })">
                     <el-icon>
                         <SvgIcon name="doctor_fill" class="icon-svg" />
@@ -175,7 +176,7 @@
                     <span slot="title">医生检查</span>
                 </el-menu-item>
                 <el-menu-item index="MisCheckupReport"
-                    
+                    v-if="proxy.isAuth(['ROOT', 'CHECKUP_REPORT:SELECT'])"
                     @click="$router.push({ name: 'MisCheckupReport' })">
                     <el-icon>
                         <SvgIcon name="file_fill" class="icon-svg" />
@@ -185,7 +186,7 @@
             </el-sub-menu>
             <el-sub-menu index="系统设置"
                 :popper-class="'site-sidebar--' + sidebar.sidebarLayoutSkin + '-popper'"
-                >
+                v-if="proxy.isAuth(['ROOT', 'SYSTEM:SELECT'])">
                 <template #title>
                     <el-icon>
                         <SvgIcon name="system_fill" class="icon-svg" />
@@ -193,7 +194,7 @@
                     <span slot="title">系统设置</span>
                 </template>
                 <el-menu-item index="MisFlowRegulation"
-                    
+                    v-if="proxy.isAuth(['ROOT', 'FLOW_REGULATION:SELECT'])"
                     @click="$router.push({ name: 'MisFlowRegulation' })">
                     <el-icon>
                         <SvgIcon name="people_fill" class="icon-svg" />
@@ -257,3 +258,4 @@
         margin-right: 5px;
     }
 </style>
+
