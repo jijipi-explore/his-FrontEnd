@@ -1,3 +1,4 @@
+// import { title } from 'process';
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
 const history = createWebHistory();
 const routes : Array<RouteRecordRaw> = [
@@ -19,7 +20,32 @@ const routes : Array<RouteRecordRaw> = [
         name: 'Main',
         component: () => import('../views/mis/main.vue'),
         children: [
-            
+            {
+              path: 'home',
+              name: 'MisHome',
+              component: () => import('../views/mis/home.vue'),
+              meta: {
+                title: '首页'
+              }
+            },
+            {
+              path: 'dept',
+              name: 'MisDept',
+              component: () => import('../views/mis/dept.vue'),
+              meta: {
+                title: '部门管理',
+                isTab: true
+              }
+            },
+            {
+              path: 'role',
+              name: 'MisRole',
+              component: () => import('../views/mis/role.vue'),
+              meta: {
+                title: '角色管理',
+                isTab: true
+              }
+            }
         ]
     },
     {
